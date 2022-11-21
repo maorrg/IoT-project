@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Measure {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  temperature Float
+  humidity    Float
+  light       Float
+  tsd         Float
+  createdAt   DateTime @default(now())
+  Sensor      Sensor?  @relation(fields: [sensorId], references: [id])
+  sensorId    String?  @db.ObjectId
+}
+
+model Sensor {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  location   String
+  lastUpdate DateTime?
+  measures   Measure[]
+  createdAt  DateTime  @default(now())
+}
