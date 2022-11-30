@@ -24,7 +24,7 @@ float averageVoltage = 0,tdsValue = 0,temperature = 25;
 
 // WiFi
 const char *ssid = "PEZET-2.4G";
-const char *password = "*****";
+const char *password = "reb21&ma30";
 
 // MQTT Broker
 const char *mqtt_broker = "192.168.18.203";
