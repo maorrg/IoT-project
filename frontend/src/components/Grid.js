@@ -9,7 +9,7 @@ const columns = [
   { key: "humidity", name: "Humedad" },
   { key: "light", name: "Iluminación" },
   { key: "tsd", name: "Total Solids Dissolved" },
-  { key: "createdAt", name: "Fecha" },
+  { key: "createdAt", name: "Fecha"},
 ];
 
 const Grid = () => {
@@ -21,7 +21,12 @@ const Grid = () => {
     });
   }, []);
 
-  return <DataGrid columns={columns} rows={data} />;
+  return (
+    <DataGrid
+      columns={columns}
+      rows={data}
+    />
+  );
 };
 
 export default Grid;

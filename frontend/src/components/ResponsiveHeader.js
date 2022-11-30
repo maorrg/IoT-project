@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HEADER_HEIGHT = 60;
 
@@ -60,6 +61,7 @@ const useStyles = createStyles((theme) => ({
     padding: "8px 12px",
     borderRadius: theme.radius.sm,
     textDecoration: "none",
+    cursor: "pointer",
     color:
       theme.colorScheme === "dark"
         ? theme.colors.dark[0]
@@ -96,17 +98,18 @@ export function HeaderResponsive({ links }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
+  const navigate = useNavigate();
 
   const items = links.map((link) => (
     <a
       key={link.label}
-      href={link.link}
       className={cx(classes.link, {
         [classes.linkActive]: active === link.link,
       })}
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
+        navigate(link.link);
         close();
       }}
     >
